@@ -34,16 +34,24 @@ jobs:
           days_inactive_threshold: 90
 ```
 
-## 🔐 Required Permissions
-
-This action requires the following permissions in your workflow:
+## Downloading the CSV Report
+To download the reports after the workflow completes, add the following step in your workflow file
 
 ```yaml
-permissions:
-  contents: read
-  members: read
-  metadata: read
+- name: Upload dormant users report
+  uses: actions/upload-artifact@v4
+  with:
+    name: dormant-users-report
+    path: "*.csv"
 ```
+
+## 🔐 Required Token Permissions
+
+The token used with this action must have the following scopes:
+
+- `read:org`
+- `repo`
+
 
 ## 🔧 GitHub Action Inputs
 
