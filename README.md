@@ -3,7 +3,7 @@
 This script identifies dormant (inactive) users in GitHub organizations by analyzing their activity across all repositories.
 
 This project is available both as:
-- ✅ **A GitHub Action (recommended)**
+- ✅ **A GitHub Action**
 - 🐍 **A standalone Python script (optional local usage)**
 
 ---
@@ -35,7 +35,7 @@ jobs:
 ```
 
 ## Downloading the CSV Report
-To download the reports after the workflow completes, add the following step in your workflow file
+To download the reports after the workflow completes, add the following step in your workflow file.
 
 ```yaml
 - name: Upload dormant users report
