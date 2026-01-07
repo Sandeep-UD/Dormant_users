@@ -1,0 +1,23 @@
+name: Test Dormant Users Action
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  members: read
+  metadata: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run action locally
+        uses: ./
+        with:
+          github_token: ${{ secrets.ORG_AUDIT_TOKEN }}
+          org_names: Sandeep-UD
+          days_inactive_threshold: 30
