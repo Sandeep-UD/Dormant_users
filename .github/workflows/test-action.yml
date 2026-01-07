@@ -17,5 +17,13 @@ jobs:
         uses: ./
         with:
           github_token: ${{ secrets.ORG_AUDIT_TOKEN }}
-          org_names: Sandeep-UD
+          org_names: yubi-migration-test
           days_inactive_threshold: 30
+
+
+      - name: Upload dormant users report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dormant-users-report
+          path: "*.csv"
+
