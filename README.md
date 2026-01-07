@@ -2,6 +2,64 @@
 
 This script identifies dormant (inactive) users in GitHub organizations by analyzing their activity across all repositories.
 
+This project is available both as:
+- ✅ **A GitHub Action (recommended)**
+- 🐍 **A standalone Python script (optional local usage)**
+
+---
+
+## 🚀 GitHub Action (Marketplace)
+
+Run dormant user audits automatically using **GitHub Actions**, without local setup.
+
+### Example workflow
+
+```yaml
+name: Dormant Users Audit
+
+on:
+  schedule:
+    - cron: "0 2 1 * *"   # Monthly
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Dormant Users Report
+        uses: your-org/github-dormant-users-action@v1
+        with:
+          github_token: ${{ secrets.ORG_AUDIT_TOKEN }}
+          org_names: my-org,subsidiary-org
+          days_inactive_threshold: 90
+```
+
+## 🔐 Required Permissions
+
+This action requires the following permissions in your workflow:
+
+```yaml
+permissions:
+  contents: read
+  members: read
+  metadata: read
+```
+
+## 🔧 GitHub Action Inputs
+
+| Name | Required | Default | Description |
+|---|---|---|---|
+| `github_token` | Yes | – | GitHub token with `read:org` and repository read access |
+| `org_names` | Yes | – | Comma-separated GitHub organization names |
+| `days_inactive_threshold` | No | `60` | Days to consider a user inactive |
+
+
+
+
+
+## 🐍 Standalone Python Script (Optional Local Usage)
+
+
 ## Overview
 
 The script tracks user activity including:
@@ -44,30 +102,8 @@ DAYS_INACTIVE_THRESHOLD=60
 | `ORG_NAMES` | Comma-separated list of organizations | Required | `myorg,anotherorg` |
 | `DAYS_INACTIVE_THRESHOLD` | Days to consider user inactive | `60` | `90` |
 
+
 ## Usage
-
-```
-name: Dormant Users Audit
-
-on:
-  schedule:
-    - cron: "0 2 1 * *"   # Monthly
-  workflow_dispatch:
-
-jobs:
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run Dormant Users Report
-        uses: your-org/github-dormant-users-action@v1
-        with:
-          github_token: ${{ secrets.ORG_AUDIT_TOKEN }}
-          org_names: my-org,subsidiary-org
-          days_inactive_threshold: 90
-
-```
-
-
 
 Run the script:
 
