@@ -59,8 +59,8 @@ jobs:
 
 The token used with this action must have the following scopes:
 
-- `read:org`
-- `repo`
+- `read:org – to list organization members`
+- `repo - to analyze repository activity`
 
 
 ## 🔧 GitHub Action Inputs
@@ -342,32 +342,6 @@ For organizations with many repositories:
 - **Historical Data**: GraphQL history queries may have limitations
 - **Deleted Content**: Activity on deleted branches/repos not tracked
 
-## Extending the Script
-
-### Add More Activity Types
-
-To track additional activity (e.g., code reviews, comments):
-
-```python
-# Add code review tracking
-q_reviews = """
-query($owner: String!, $name: String!, $cursor: String) {
-  repository(owner: $owner, name: $name) {
-    pullRequests(first: 100, after: $cursor) {
-      nodes {
-        reviews(first: 100) {
-          nodes { author { login }, createdAt }
-        }
-      }
-    }
-  }
-}
-"""
-```
-
-### Export to Different Format
-
-Modify the output section to export JSON, Excel, or other formats.
 
 ## Additional Resources
 
