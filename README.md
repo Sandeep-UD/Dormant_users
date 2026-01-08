@@ -74,16 +74,18 @@ The token used with this action must have the following scopes:
 
 ## Sample Output
 
-| Users              | Last activity | Active      |
-|--------------------|---------------|-------------|
-| dependabot         | 2014-04-25    | false       |
-| sriplayground      | 2024-01-25    | false       |
-| balajisriramdas    | 2025-12-31    | true        |
-| aliqaryan          | 2022-10-28    | false       |
-| vaishnavn02        | 2024-01-25    | false       |
-| smolz              | 2021-12-21    | false       |
-| naveen-kunder      | 25-12-31      | true        |
-| akshay-canarys     | N/A           | never-active|
+| Users                     | Last Activity | Active |
+|---------------------------|---------------|--------|
+| dependabot                | 14-04-2025    | false  |
+| sriplayground             | 24-01-2025    | false  |
+| vaishnavn02               | 24-01-2025    | false  |
+| Grenston                  | 19-01-2021    | false  |
+| balajisriramdas           | 31-12-2025    | true   |
+| HarishjKumar-canarys      | 24-01-2025    | false  |
+| srionland                 | 30-10-2024    | false  |
+| naveen-kunder             | 31-12-2025    | true   |
+| akshay-canarys            |	N/A	          | never-active |
+
 
 
 
