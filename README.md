@@ -1,6 +1,8 @@
 # GitHub Dormant Developer Users Report
 
-This script identifies dormant developer users in GitHub organizations by analyzing their activity across all repositories.
+GitHub already provides basic dormant user visibility at the platform level.
+This action extends that capability by identifying Dormant Developer Users based on actual development activity—commits, issues, and pull requests—across all repositories.
+The resulting report can be downloaded directly from the GitHub Actions workflow.
 
 
 This project is available both as:
