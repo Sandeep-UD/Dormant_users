@@ -1,6 +1,7 @@
-# GitHub Dormant Users Report
+# GitHub Dormant Developer Users Report
 
-This script identifies dormant users in GitHub organizations by analyzing their activity across all repositories.
+This script identifies dormant developer users in GitHub organizations by analyzing their activity across all repositories.
+
 
 This project is available both as:
 - ✅ **A GitHub Action**
@@ -10,7 +11,8 @@ This project is available both as:
 
 ## 🚀 GitHub Action (Marketplace)
 
-Run dormant user audits automatically using **GitHub Actions**, without local setup.
+Run dormant developer user audits automatically using **GitHub Actions**, without local setup.
+
 
 ## How It Works
 
@@ -26,7 +28,7 @@ Run dormant user audits automatically using **GitHub Actions**, without local se
 ### Example workflow
 
 ```yaml
-name: Dormant Users Audit
+name: Dormant Developer Users Audit
 
 on:
   schedule:
@@ -40,8 +42,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Dormant Users Report
-        uses: your-org/github-dormant-users-action@v1
+      - name: Run Dormant Developer Users Report
+        uses: your-org/dormant-developer-users-action@v1
         with:
           github_token: ${{ secrets.ORG_AUDIT_TOKEN }}
           org_names: my-org,subsidiary-org
@@ -50,7 +52,7 @@ jobs:
       - name: Upload dormant users report
         uses: actions/upload-artifact@v4
         with:
-          name: dormant-users-report
+          name: name: dormant-developer-users-report
           path: "*.csv"
 
 ```
@@ -85,8 +87,6 @@ The token used with this action must have the following scopes:
 | srionland                 | 30-10-2024    | false  |
 | naveen-kunder             | 31-12-2025    | true   |
 | akshay-canarys            |	N/A	          | never-active |
-
-
 
 
 
@@ -140,7 +140,7 @@ DAYS_INACTIVE_THRESHOLD=60
 Run the script:
 
 ```bash
-python dormant_users.py
+python dormant_developer_users.py
 ```
 
 ## Output
