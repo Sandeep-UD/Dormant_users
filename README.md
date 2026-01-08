@@ -54,7 +54,7 @@ jobs:
       - name: Upload dormant users report
         uses: actions/upload-artifact@v4
         with:
-          name: name: dormant-developer-users-report
+          name: dormant-developer-users-report
           path: "*.csv"
 
 ```
