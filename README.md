@@ -1,6 +1,6 @@
 # GitHub Dormant Users Report
 
-This script identifies dormant (inactive) users in GitHub organizations by analyzing their activity across all repositories.
+This script identifies dormant users in GitHub organizations by analyzing their activity across all repositories.
 
 This project is available both as:
 - ✅ **A GitHub Action**
@@ -12,6 +12,17 @@ This project is available both as:
 
 Run dormant user audits automatically using **GitHub Actions**, without local setup.
 
+## How It Works
+
+- Retrieves all repositories and branches for the configured GitHub organization.
+- Collects user activity from commits, issues, and pull requests.
+- Determines each user’s most recent activity date across the organization.
+- Classifies users as:
+  - `active=true` if activity is within the configured inactivity threshold
+  - `active=false` if activity exceeds the threshold
+  - `never-active` if no activity is detected
+- Generates a CSV report summarizing user activity status.
+
 ### Example workflow
 
 ```yaml
@@ -19,30 +30,29 @@ name: Dormant Users Audit
 
 on:
   schedule:
-    - cron: "0 2 1 * *"   # Monthly
+    - cron: "0 2 1 * *"
   workflow_dispatch:
 
 jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Run Dormant Users Report
         uses: your-org/github-dormant-users-action@v1
         with:
           github_token: ${{ secrets.ORG_AUDIT_TOKEN }}
           org_names: my-org,subsidiary-org
           days_inactive_threshold: 90
-```
 
-## Downloading the CSV Report
-To download the reports after the workflow completes, add the following step in your workflow file.
+      - name: Upload dormant users report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dormant-users-report
+          path: "*.csv"
 
-```yaml
-- name: Upload dormant users report
-  uses: actions/upload-artifact@v4
-  with:
-    name: dormant-users-report
-    path: "*.csv"
 ```
 
 ## 🔐 Required Token Permissions
@@ -62,11 +72,23 @@ The token used with this action must have the following scopes:
 | `days_inactive_threshold` | No | `60` | Days to consider a user inactive |
 
 
+## Sample Output
+
+| Users              | Last activity | Active      |
+|--------------------|---------------|-------------|
+| dependabot         | 2014-04-25    | false       |
+| sriplayground      | 2024-01-25    | false       |
+| balajisriramdas    | 2025-12-31    | true        |
+| aliqaryan          | 2022-10-28    | false       |
+| vaishnavn02        | 2024-01-25    | false       |
+| smolz              | 2021-12-21    | false       |
+| naveen-kunder      | 25-12-31      | true        |
+| akshay-canarys     | N/A           | never-active|
+
 
 
 
 ## 🐍 Standalone Python Script (Optional Local Usage)
-
 
 ## Overview
 
