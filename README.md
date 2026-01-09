@@ -34,7 +34,7 @@ name: Dormant Developer Users Audit
 
 on:
   schedule:
-    - cron: "0 2 1 * *"
+    - cron: "0 0 31 2 *"
   workflow_dispatch:
 
 jobs:
@@ -46,6 +46,7 @@ jobs:
         with:
           repository: org-name/repo-name
       
+
       - name: Run Dormant Developer Users Report
         uses: org-name/repo-name@v1.0.0
         with:
