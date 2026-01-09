@@ -1,4 +1,4 @@
-name: GitHub Dormant Developer Users Report
+name: GitHub Dormant Users Report
 description: Identify inactive and never-active users across GitHub organizations
 author: Sandeep Doddamani
 
@@ -8,7 +8,7 @@ branding:
 
 inputs:
   github_token:
-    description: GitHub token with read:org and read:repo permissions
+    description: GitHub token with read:org and repo permissions
     required: true
   org_names:
     description: Comma-separated organization names
@@ -27,13 +27,13 @@ runs:
         python-version: "3.11"
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: pip install -r "${{ github.action_path }}/requirements.txt"
       shell: bash
 
-    - name: Run dormant developer users report
+    - name: Run dormant users report
       run: |
         export GITHUB_TOKEN="${{ inputs.github_token }}"
         export ORG_NAMES="${{ inputs.org_names }}"
         export DAYS_INACTIVE_THRESHOLD="${{ inputs.days_inactive_threshold }}"
-        python dormant_developer_users.py
+        python "${{ github.action_path }}/dormant_developer_users.py"
       shell: bash
