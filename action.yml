@@ -6,14 +6,15 @@ branding:
   icon: users
   color: blue
 
+
 inputs:
-  github_token:
-    description: GitHub token with read:org and repo permissions
+  github_token: 
+    description: GitHub token with read:org and read:repo permissions. You must create a GitHub secret (for example, `ORG_AUDIT_TOKEN`) and pass it explicitly to the action.
     required: true
   org_names:
     description: Comma-separated organization names
     required: true
-  days_inactive_threshold:
+  days_inactive_threshold: 
     description: Days to consider a user inactive
     required: false
     default: "60"
