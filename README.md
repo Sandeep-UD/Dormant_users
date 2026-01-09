@@ -27,6 +27,36 @@ Run dormant developer user audits automatically using **GitHub Actions**, withou
   - `never-active` if no activity is detected
 - Generates a CSV report summarizing user activity status.
 
+
+## Usage
+
+```yml
+  - name: Run Dormant Developer Users Report
+    uses: org-name/repo-name@v1.0.0
+    with:
+      github_token: ${{ secrets.ORG_AUDIT_TOKEN }}
+      org_names: org
+      days_inactive_threshold: 90
+
+
+# Uploads the CSV report of dormant developer users so it can be downloaded
+  - name: Upload dormant users report
+    uses: actions/upload-artifact@v4
+    with:
+      name: dormant-developer-users-report
+      path: "*.csv"
+```
+
+> ⚠️ **Important:**  
+> The GitHub Marketplace installation snippet does not include secret values.  
+> You must create a GitHub secret (for example, `ORG_AUDIT_TOKEN`) and explicitly pass it to the action as shown below:
+>
+> ```yaml
+> github_token: ${{ secrets.ORG_AUDIT_TOKEN }}
+> ```
+
+
+
 ### Example workflow
 
 ```yaml
