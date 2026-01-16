@@ -17,7 +17,7 @@ jobs:
         uses: ./
         with:
           github_token: ${{ secrets.ORG_AUDIT_TOKEN }}
-          org_names: yubi-migration-test
+          org_names: yubi-migration
           days_inactive_threshold: 30
 
 
